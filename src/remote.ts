@@ -22,18 +22,18 @@ const strict = (typeSymbol: string, schema: z.ZodType) => ({ mode: 'strict' as c
 const parameter = (name: string, schema: z.ZodType, acceptsUndefined?: true) => ({
   name, wire: name, source: 'json' as const,
   ...(acceptsUndefined === true ? { acceptsUndefined: true as const } : {}),
-  codec: strict(`@hrhgit/dsh-agent-manager/types#${name}`, schema),
+  codec: strict(`@ruihuahe/dsh-agent-manager/types#${name}`, schema),
 })
 type Parameter = ReturnType<typeof parameter>
-const descriptor = (method: string, parameters: readonly Parameter[], result: z.ZodType, resultType: string) => ({ id: `@hrhgit/dsh-agent-manager#agentManager/${method}`, service: 'agentManager', namespace: 'agentManager', method, invocation: { kind: 'direct' as const }, parameters, result: strict(`@hrhgit/dsh-agent-manager/types#${resultType}`, result) })
+const descriptor = (method: string, parameters: readonly Parameter[], result: z.ZodType, resultType: string) => ({ id: `@ruihuahe/dsh-agent-manager#agentManager/${method}`, service: 'agentManager', namespace: 'agentManager', method, invocation: { kind: 'direct' as const }, parameters, result: strict(`@ruihuahe/dsh-agent-manager/types#${resultType}`, result) })
 const descriptors = [
   descriptor('snapshot', [parameter('agentPreset', z.string().optional(), true)], snapshot, 'AgentManagerSnapshot'),
   descriptor('setToolEnabled', [parameter('input', setToolEnabled)], snapshot, 'AgentManagerSnapshot'),
   descriptor('copyPreset', [parameter('input', copyPreset)], snapshot, 'AgentManagerSnapshot'),
 ] as const
 
-export const TYPERT_REMOTE: TypertRemoteContribution = { package: '@hrhgit/dsh-agent-manager', descriptors }
-export const TYPERT = { package: '@hrhgit/dsh-agent-manager', face: 'host', schemas: [], invocations: descriptors, model: { services: [], events: [], objects: [] } }
+export const TYPERT_REMOTE: TypertRemoteContribution = { package: '@ruihuahe/dsh-agent-manager', descriptors }
+export const TYPERT = { package: '@ruihuahe/dsh-agent-manager', face: 'host', schemas: [], invocations: descriptors, model: { services: [], events: [], objects: [] } }
 
 declare module '@deepseek-ai/dsh-typert-protocol' {
   interface TypertRemoteMap {

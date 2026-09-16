@@ -1,5 +1,5 @@
 {
-  "name": "@hrhgit/dsh-agent-manager",
+  "name": "@ruihuahe/dsh-agent-manager",
   "version": "0.1.0",
   "description": "Manage the declared tool policy of DeepSeek Harness agent presets",
   "license": "MIT",
